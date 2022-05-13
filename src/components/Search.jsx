@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Topbar(){
+function Search(){
 
 
     return(
@@ -10,4 +10,4 @@ function Topbar(){
     )
 }
 
-export default Topbar;
+export default Search;

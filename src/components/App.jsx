@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Topbar from "./topbar"
+import Search from "./topbar"
 
 function App(){
     return(
         <div>
-            <Topbar />
+            <Search />
             <h1 className="heading1">Hello World</h1>
         </div>
     )
