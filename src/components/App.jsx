@@ -60,6 +60,8 @@ function App() {
             feelslike: Math.round(data.main.feels_like),
             sunrise: formatAMPM(sunr),
             sunset: formatAMPM(suns),
+            humidity: data.main.humidity,
+            pressure: data.main.pressure,
           };
           setdata(datagot);
         });

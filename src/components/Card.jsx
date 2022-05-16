@@ -35,7 +35,7 @@ function Card(props) {
               <p>Humidity: {props.data.humidity}%</p>
             </div>
             <div className="col">
-              <p>Pressure: {props.data.pressure}</p>
+              <p>Pressure: {props.data.pressure}hPa</p>
             </div>
           </div>
           <div className="row">
