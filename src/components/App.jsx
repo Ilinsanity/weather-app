@@ -18,17 +18,17 @@ function App() {
     sunset: 1231231233,
   });
 
-  const [foundcity, setfoundcity] = useState(true);
-  var input = document.getElementById("searchbar");
-    input.addEventListener("keydown", function (event) {
-      // If the user presses the "Enter" key on the keyboard
-      if (event.key === "Enter") {
-        // Cancel the default action, if needed
-        event.preventDefault();
-        var cityname = input.value;
-        getWeatherData(cityname);
-      }
-    });
+  const [foundcity, setfoundcity] = useState(false);
+  // var input = document.getElementById("searchbar").value;
+  //   input.addEventListener("keydown", function (event) {
+  //     // If the user presses the "Enter" key on the keyboard
+  //     if (event.key === "Enter") {
+  //       // Cancel the default action, if needed
+  //       event.preventDefault();
+  //       var cityname = input.value;
+  //       getWeatherData(cityname);
+  //     }
+  //   });
     function formatAMPM(date) {
         var hours = date.getHours();
         var minutes = date.getMinutes();
@@ -45,7 +45,10 @@ function App() {
       fetch(apirul)
         .then((response) => response.json())
         .then((data) => {
-            let unix = data.sys.sunrise;
+          if(data.cod == 400){
+
+          } else {
+             let unix = data.sys.sunrise;
             let sunr = new Date(unix+1000);
             let unix2 = data.sys.sunset;
             let suns = new Date(unix2*1000);
@@ -64,13 +67,28 @@ function App() {
             pressure: data.main.pressure,
           };
           setdata(datagot);
+          console.log(datagot.main);
+          }
+           
         });
       setfoundcity(true);
     }
+    const [cityname,setcityname] = useState("");
+    const getInputValue = (event)=>{
+      // show the user input value to console
+      const userValue = event.target.value;
+
+      console.log(userValue);
+
+      getWeatherData(userValue);
+      if(userValue === ""){
+        setfoundcity(false);
+      }
+  };
   return (
     <div className="back">
       <div className="searchdiv">
-      <input type="text" placeholder="Search for a City" id="searchbar"></input>
+      <input type="text" placeholder="Search for a City" id="searchbar" onChange={getInputValue}></input>
       </div>
       {foundcity && <Card data={dataset} />}
     </div>

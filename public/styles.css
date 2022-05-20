@@ -25,7 +25,7 @@ input{
 .searchdiv{
     margin: auto;
     width: 30%;
-    padding-top:7%;
+    padding-top:3%;
     padding-bottom: 5%;
 }
 
@@ -61,7 +61,7 @@ padding-bottom: 7%;
 }
 
 .feels{
-    padding-top: 10%;
+    padding-top: 7%;
 }
 
 .temperat{
@@ -86,4 +86,9 @@ padding-bottom: 7%;
 
 .sun{
     font-size: 3rem;
+}
+
+.clouds{
+    font-size: 4.5rem;
+    color: rgb(184, 179, 179);
 }
