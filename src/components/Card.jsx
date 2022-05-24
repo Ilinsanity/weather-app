@@ -29,7 +29,7 @@ function Card(props) {
   }
   // fa fa-sun fa-6x fa-spin
   return (
-    <div className="">
+    <div>
       <div className="row topcont">
         <div className="col-md-6 one">
           <div>

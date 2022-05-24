@@ -2,8 +2,9 @@ html{
     font-family: 'Quicksand', sans-serif;
 }
 .back{
-    background-image: url(mount.JPG);
-    background-size: cover;
+    /* background-image: url(mount.JPG);
+    background-size: cover; */
+    background-color: #022F40;
     height: 100vh;
 }
 .heading1{
@@ -11,7 +12,7 @@ html{
 }
 
 input{
-    width: 100%;
+    width: 75%;
     height: 40px;
     font-family: 'Quicksand', sans-serif;
     letter-spacing: 1px;
@@ -24,7 +25,7 @@ input{
 
 .searchdiv{
     margin: auto;
-    width: 30%;
+    width: 35%;
     padding-top:3%;
     padding-bottom: 5%;
 }
@@ -43,12 +44,13 @@ padding-bottom: 7%;
 }
 
 .topcont{
-    background-color: aliceblue;
+    background-color: #38AECC;
     width: 800px;
     height: 350px;
     margin: auto;
     border-radius: 10px;
     font-family: 'Quicksand', sans-serif;
+    color: #C2F8CB;
 }
 
 .fa-sun{
@@ -90,5 +92,12 @@ padding-bottom: 7%;
 
 .clouds{
     font-size: 4.5rem;
-    color: rgb(184, 179, 179);
+    /* color: rgb(184, 179, 179); */
+    color: #C2F8CB;
+}
+
+.locatebutton{
+    width: 25%;
+    height: 40px;
+    float: right;
 }
