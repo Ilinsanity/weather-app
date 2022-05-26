@@ -19,28 +19,26 @@ function App() {
   });
 
   const [foundcity, setfoundcity] = useState(false);
-  function geoFindMe() {
-    var coords = {};
-    navigator.geolocation.getCurrentPosition(success, error);
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // function geoFindMe() {
+  //   var coords = {};
+  //   navigator.geolocation.getCurrentPosition(success, error);
+  //   function success(position) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      console.log(latitude, longitude);
-      coords ={
-        long: longitude,
-        lat: latitude,
-      }
+  //     console.log(latitude, longitude);
+  //     coords = {
+  //       long: longitude,
+  //       lat: latitude,
+  //     };
 
-      getWeatherDataCoords(coords);
-    }
+  //     getWeatherDataCoords(coords);
+  //   }
 
-    function error() {
-      console.log("error");
-    }
-
-    
-  }
+  //   function error() {
+  //     console.log("error");
+  //   }
+  // }
 
   function formatAMPM(date) {
     var hours = date.getHours();
@@ -53,10 +51,12 @@ function App() {
     return strTime;
   }
 
-
   function getWeatherDataCoords(city) {
     const apirul =
-      "http://api.openweathermap.org/data/2.5/weather?lat="+city.lat+"&lon="+city.long+
+      "http://api.openweathermap.org/data/2.5/weather?lat=" +
+      city.lat +
+      "&lon=" +
+      city.long +
       "&units=metric&appid=b820c3126ad2a286b1e479513b3132d0";
     fetch(apirul)
       .then((response) => response.json())
@@ -64,7 +64,7 @@ function App() {
         if (data.cod == 400) {
         } else {
           let unix = data.sys.sunrise;
-          let sunr = new Date(unix + 1000);
+          let sunr = new Date(unix * 1000);
           let unix2 = data.sys.sunset;
           let suns = new Date(unix2 * 1000);
           const datagot = {
@@ -87,7 +87,6 @@ function App() {
       });
     setfoundcity(true);
   }
-
 
   function getWeatherData(city) {
     const apirul =
@@ -100,7 +99,7 @@ function App() {
         if (data.cod == 400) {
         } else {
           let unix = data.sys.sunrise;
-          let sunr = new Date(unix + 1000);
+          let sunr = new Date(unix * 1000);
           let unix2 = data.sys.sunset;
           let suns = new Date(unix2 * 1000);
           const datagot = {
@@ -123,7 +122,6 @@ function App() {
       });
     setfoundcity(true);
   }
-  const [cityname, setcityname] = useState("");
   const getInputValue = (event) => {
     // show the user input value to console
     const userValue = event.target.value;
@@ -135,6 +133,33 @@ function App() {
       setfoundcity(false);
     }
   };
+
+  const geoFindMe = () => {
+    var coords = {};
+    navigator.geolocation.getCurrentPosition(success, error);
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      console.log(latitude, longitude);
+      coords = {
+        long: longitude,
+        lat: latitude,
+      };
+
+      getWeatherDataCoords(coords);
+    }
+
+    function error() {
+      console.log("error");
+    }
+  };
+  window.onload = function () {
+    document.getElementById("locatepress").onclick = function () {
+      geoFindMe();
+    };
+  };
+
   return (
     <div className="back">
       <div className="searchdiv">
@@ -144,7 +169,7 @@ function App() {
           id="searchbar"
           onChange={getInputValue}
         ></input>
-        <button className="locatebutton" onClick={geoFindMe()}>
+        <button className="locatebutton" id="locatepress">
           <i class="bi bi-geo-alt-fill"></i> Locate Me
         </button>
       </div>
